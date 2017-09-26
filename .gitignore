@@ -1,0 +1,6 @@
+*.csv
+*.xml
+*.iml
+CMakeFiles/
+cmake-build-debug/
+output.txt

@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
                     ->default_value("TD0"), "M");
 
     enum methods {
-        LP, VI, PI, MPI, TD0, AMC
+        LP, VI, PI, MPI, TD0, EVMC
     };
     options.parse(argc, argv);
     std::cout << "Parsed Args" << std::endl;
@@ -51,8 +51,8 @@ int main(int argc, char *argv[]) {
         method = MPI;
     } else if (m == "TD0") {
         method = TD0;
-    } else if (m == "AMC") {
-        method = AMC;
+    } else if (m == "EVMC") {
+        method = EVMC;
     }
     std::cout << "Reading: " << file << std::endl;
 
@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
         for (unsigned int i = 0; i < n_actions; i++) {
             std::cout << "v[s_" << i << "]: " << V[i] << std::endl;
         }
-    } else if (method == AMC) {
+    } else if (method == EVMC) {
         int n_actions = 0;
 
         int step, inv, ord;
