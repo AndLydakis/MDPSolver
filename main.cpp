@@ -15,6 +15,10 @@
 #include "/usr/local/lib/cxxopts/include/cxxopts.hpp"
 #include "gurobi_c++.h"
 
+enum class Method_t {
+    LP, VI, PI, MPI, TD0, EVMC
+};
+
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -34,10 +38,6 @@ int main(int argc, char *argv[]) {
                     ->default_value("0.001"), "A")
             ("m, method", "Algorithm to use", cxxopts::value<string>()
                     ->default_value("TD0"), "M");
-
-    enum class Method_t {
-        LP, VI, PI, MPI, TD0, EVMC
-    };
     try {
         options.parse(argc, argv);
     } catch (cxxopts::OptionException oe) {
@@ -67,7 +67,11 @@ int main(int argc, char *argv[]) {
         method = Method_t::TD0;
     } else if (m == "EVMC") {
         method = Method_t::EVMC;
+    } else {
+        cout << "Unknown optimization method " << m << ". Terminating." << endl;
+        terminate();
     }
+
     cout << "Reading: " << file << endl;
 
     if (method == Method_t::TD0) {
