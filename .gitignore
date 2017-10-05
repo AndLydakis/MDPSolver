@@ -4,3 +4,5 @@
 CMakeFiles/
 cmake-build-debug/
 output.txt
+CMakeCache.txt
+cmake-build-default/

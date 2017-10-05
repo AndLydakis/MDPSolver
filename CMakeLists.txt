@@ -1,13 +1,13 @@
-# set(CMAKE_CXX_COMPILER g++-4.9)
 cmake_minimum_required(VERSION 3.9)
 
 project(MDPSolver)
 
-# set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(SOURCE_FILES main.cpp)
 set(GUROBI_HOME $ENV{GUROBI_HOME})
 message("${GUROBI_HOME}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 find_library( GUROBI_CXX_LIBRARY_1
         NAMES
@@ -32,6 +32,7 @@ find_path(GUROBI_INCLUDE_DIR
 if(NOT GUROBI_CXX_LIBRARY_1)
     message(FATAL_ERROR "Failed to find Gurobi lib.  Try setting CMAKE_PREFIX_PATH")
 endif()
+
 if(NOT GUROBI_CXX_LIBRARY_2)
     message(FATAL_ERROR "Failed to find Gurobi lib 2.  Try setting CMAKE_PREFIX_PATH")
 endif()
