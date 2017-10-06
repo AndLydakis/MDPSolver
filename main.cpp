@@ -381,12 +381,7 @@ int main(int argc, char *argv[]) {
         while (in.read_row(from, action, to, prob, rew)) {
             P.insert(make_pair(make_tuple(from, action, to), prob));
             R.insert(make_pair(make_tuple(from, action, to), rew));
-            if (from > n_states) {
-                n_states = from;
-            }
-            if (to > n_states) {
-                n_states = to;
-            }
+            n_states = std::max(std::max(n_states, to), from);
             if (s_a.find(from) == s_a.end()) {
                 map<int, vector<int>> vec;
                 vec.insert(make_pair(action, vector<int>()));
